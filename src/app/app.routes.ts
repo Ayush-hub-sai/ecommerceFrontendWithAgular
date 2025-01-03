@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './core/services/auth/guard/auth.guard';
+import { NotfoundComponent } from './core/shared/component/notfound/notfound.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -12,6 +13,6 @@ export const routes: Routes = [
       loadChildren: () => import('./components/pages/pages.module').then(m => m.PagesModule),
       canActivate: [AuthGuard],
     },
-    { path: '**', redirectTo: 'auth/login' }
+    { path: '**', component:NotfoundComponent }
   ];
   
