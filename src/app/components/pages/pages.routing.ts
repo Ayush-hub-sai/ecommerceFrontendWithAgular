@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ItemsComponent } from './items/items.component';
-import { CategoriesComponent } from './categories/categories.component';
+import { ItemsComponent } from './lookup/items/items.component';
+import { CategoriesComponent } from './lookup/categories/categories.component';
 import { PagesComponent } from './pages.component';
 
 
