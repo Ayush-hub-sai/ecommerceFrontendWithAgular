@@ -2,7 +2,32 @@
     <button mat-icon-button (click)="collapsed.set(!collapsed())">
         <mat-icon>menu</mat-icon>
     </button>
+
+    <!-- Spacer to push the profile section to the right -->
+    <span class="spacer"></span>
+
+    <!-- Profile icon with a menu -->
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+
+    <!-- Profile menu -->
+    <mat-menu #menu="matMenu">
+        <div class="profile-menu">
+            <div class="profile-info">
+                <!-- Profile picture -->
+                <img src="profile-pic-url.jpg" alt="Profile" class="profile-pic">
+                <div class="profile-details">
+                    <div class="username">Username</div>
+                    <div class="email">useremail.com</div>
+                </div>
+            </div>
+            <!-- Logout button -->
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </div>
+    </mat-menu>
 </mat-toolbar>
+
 <mat-sidenav-container>
     <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
         <app-sidebar [collapsedData]="collapsed()"></app-sidebar>
