@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{ data ? 'Edit Category' : 'Add Category' }}</h2>
+
+<form [formGroup]="categoryForm" (ngSubmit)="save()">
+    <mat-dialog-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Category Name</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error *ngIf="categoryForm.get('name')?.invalid">Category Name is required</mat-error>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+    </mat-dialog-actions>
+</form>

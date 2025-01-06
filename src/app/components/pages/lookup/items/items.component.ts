@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { ItemService } from '../../../../core/services/pagesService/item/item.service';
-import { Item } from '../../../../core/models/item';
+
+import { Item } from '../../../../core/models/lookup/item';
 import { AddEditItemModelComponent } from './add-edit-item-model/add-edit-item-model.component';
 import { MaterialModule } from '../../../../core/shared/material/material.module';
 import { CurrencyPipe } from '@angular/common';
+import { ItemService } from '../../../../core/services/pagesService/lookup/item/item.service';
 
 @Component({
   selector: 'app-items',
@@ -16,7 +17,7 @@ import { CurrencyPipe } from '@angular/common';
 export class ItemsComponent {
   items: Item[] = [];
   dataSource = new MatTableDataSource<Item>();
-  displayedColumns: string[] = ['position', 'name', 'price', 'actions'];
+  displayedColumns: string[] = ['position', 'name', 'price', 'category', 'actions'];
 
   constructor(private itemService: ItemService, private dialog: MatDialog) { }
 
@@ -36,25 +37,12 @@ export class ItemsComponent {
       width: '600px',
       data: element == 'add' ? null : element, // Pass null for add functionality
       position: { top: '40px' },
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.loadItems(); // Reload items after adding
-      }
-    });
-  }
-
-  openEditItemDialog(item: Item): void {
-    const dialogRef = this.dialog.open(AddEditItemModelComponent, {
-      width: '600px',
-      data: item, // Pass the item to edit
-      position: { top: '40px' },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.loadItems(); // Reload items after editing
       }
     });
   }
