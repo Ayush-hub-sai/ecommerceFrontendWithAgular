@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryService } from '../../../../core/services/pagesService/lookup/category/category.service';
 import { AddeditcategoryComponent } from './addeditcategory/addeditcategory.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-categories',
@@ -18,14 +19,17 @@ export class CategoriesComponent {
   dataSource = new MatTableDataSource<Category>();
   displayedColumns: string[] = ['position', 'name', 'actions'];
 
-  constructor(private categoryervice: CategoryService, private dialog: MatDialog) { }
+  constructor(
+    private categoryervice: CategoryService,
+    private toastr: ToastrService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadcategory();
   }
 
   loadcategory(): void {
-    this.categoryervice.getCategories().subscribe((category:any) => {
+    this.categoryervice.getCategories().subscribe((category: any) => {
       this.category = category;
       this.dataSource.data = this.category; // Bind to Material Table
     });
@@ -41,7 +45,7 @@ export class CategoriesComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.loadcategory(); 
+        this.loadcategory();
       }
     });
   }
@@ -49,7 +53,8 @@ export class CategoriesComponent {
   deleteCategory(id: string): void {
     this.categoryervice.deleteCategory(id).subscribe(() => {
       this.category = this.category.filter((categoryData) => categoryData._id !== id);
-      this.dataSource.data = this.category; 
+      this.dataSource.data = this.category;
+      this.toastr.error("Item Deleted Successfully")
     });
   }
 }

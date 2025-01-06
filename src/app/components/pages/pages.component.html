@@ -15,11 +15,19 @@
     <mat-menu #menu="matMenu">
         <div class="profile-menu">
             <div class="profile-info">
-                <!-- Profile picture -->
-                <img src="profile-pic-url.jpg" alt="Profile" class="profile-pic">
+                <!-- Profile picture or fallback -->
+                <div *ngIf="userData.profileImageUrl; else fallbackImage" class="profile-pic-wrapper">
+                    <img [src]="userData.profileImageUrl" alt="Profile" class="profile-pic">
+                </div>
+                <ng-template #fallbackImage>
+                    <span class="userName">
+                        <p> {{ userData.userName.charAt(0).toUpperCase() }}</p>
+                    </span>
+                </ng-template>
+
                 <div class="profile-details">
-                    <div class="username">Username</div>
-                    <div class="email">useremail.com</div>
+                    <div class="username">{{ userData.userName }}</div>
+                    <div class="email">{{ userData?.email }}</div>
                 </div>
             </div>
             <!-- Logout button -->

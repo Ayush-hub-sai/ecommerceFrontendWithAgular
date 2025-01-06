@@ -7,6 +7,7 @@ import { AddEditItemModelComponent } from './add-edit-item-model/add-edit-item-m
 import { MaterialModule } from '../../../../core/shared/material/material.module';
 import { CurrencyPipe } from '@angular/common';
 import { ItemService } from '../../../../core/services/pagesService/lookup/item/item.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-items',
@@ -19,7 +20,11 @@ export class ItemsComponent {
   dataSource = new MatTableDataSource<Item>();
   displayedColumns: string[] = ['position', 'name', 'price', 'category', 'actions'];
 
-  constructor(private itemService: ItemService, private dialog: MatDialog) { }
+  constructor(
+    private itemService: ItemService,
+    private dialog: MatDialog,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.loadItems();
@@ -51,6 +56,7 @@ export class ItemsComponent {
     this.itemService.deleteItem(id).subscribe(() => {
       this.items = this.items.filter((item) => item._id !== id);
       this.dataSource.data = this.items; // Update dataSource
+      this.toastr.error("Item Deleted Successfully")
     });
   }
 }

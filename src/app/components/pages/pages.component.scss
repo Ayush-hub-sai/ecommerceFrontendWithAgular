@@ -64,3 +64,17 @@ mat-sidenav-content {
     font-size: 0.9em;
     color: gray;
 }
+
+.userName {
+    padding: 12px;
+    background-color: #3498db;
+    border-radius: 50%;
+    margin-right: 10px;
+
+    >p {
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 0;
+    }
+}

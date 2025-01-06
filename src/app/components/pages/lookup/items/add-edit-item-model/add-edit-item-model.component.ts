@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ItemService } from '../../../../../core/services/pagesService/lookup/item/item.service';
 import { Category } from '../../../../../core/models/lookup/category';
 import { CategoryService } from '../../../../../core/services/pagesService/lookup/category/category.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-edit-item-model',
@@ -21,6 +22,7 @@ export class AddEditItemModelComponent implements OnInit {
     private fb: FormBuilder,
     private itemService: ItemService,
     private categoryService: CategoryService,
+    private toastr: ToastrService,
     private dialogRef: MatDialogRef<AddEditItemModelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -53,11 +55,13 @@ export class AddEditItemModelComponent implements OnInit {
       if (this.data?._id) {
         // Edit item
         this.itemService.updateItem(this.data._id, this.itemForm.value).subscribe(() => {
+          this.toastr.success('Item Updated Successfully');
           this.dialogRef.close(true);
         });
       } else {
         // Add new item
-        this.itemService.addItem(this.itemForm.value).subscribe(() => {
+        this.itemService.addItem(this.itemForm.value).subscribe((response:any) => {
+          this.toastr.success(response?.message);
           this.dialogRef.close(true);
         });
       }

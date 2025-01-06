@@ -22,21 +22,27 @@ export class LoginComponent {
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     // Redirect if already logged in
     if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/pages/dashboard']); 
+      this.router.navigate(['/pages/dashboard']);
     }
-    
+
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    
+
   }
-  
+
   onSubmit() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response: any) => {
           localStorage.setItem('token', response.token); // Save the token
+
+          const userData = {
+            userName: response.userName
+          }
+
+          localStorage.setItem('userData', JSON.stringify(userData)); // Save the token
           this.router.navigate(['/pages/dashboard']);
         },
         error: (err) => {
@@ -45,8 +51,8 @@ export class LoginComponent {
       });
     }
   }
-  
-  
+
+
 
 
 }
