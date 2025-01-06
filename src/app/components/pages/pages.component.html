@@ -7,12 +7,12 @@
     <span class="spacer"></span>
 
     <!-- Profile icon with a menu -->
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" title="Profile">
         <mat-icon>account_circle</mat-icon>
     </button>
 
     <!-- Profile menu -->
-    <mat-menu #menu="matMenu">
+    <mat-menu #menu="matMenu" >
         <div class="profile-menu">
             <div class="profile-info">
                 <!-- Profile picture or fallback -->

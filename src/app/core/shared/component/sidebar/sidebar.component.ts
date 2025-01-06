@@ -1,6 +1,6 @@
 import { Component, computed, Input, OnInit, signal } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterLinkWithHref } from '@angular/router';
 import { NavItem } from '../../../models/navItem';
 import { CommonModule } from '@angular/common';
 
@@ -20,14 +20,34 @@ export class SidebarComponent implements OnInit {
 
   routerList: NavItem[] = [
     { label: 'Dashboard', route: 'dashboard', icon: 'dashboard' },
-    { label: 'Items', route: 'items', icon: 'shopping_cart' },
-    { label: 'Category', route: 'categories', icon: 'category' },
+    {
+      label: 'Look Up',
+      route: '',
+      icon: 'group_work',
+      submenu: [
+        { label: 'Items', route: 'items', icon: 'shopping_cart' },
+        { label: 'Category', route: 'categories', icon: 'category' },
+      ]
+    },
+    {
+      label: 'Configurations',
+      route: '',
+      icon: 'settings',
+      submenu: [
+        { label: 'Common Setting', route: 'common', icon: 'settings' },
+        { label: 'Global Setting', route: 'global', icon: 'settings' },
+      ]
+    },
+    { label: 'Orders', route: 'items', icon: 'reorder' },
   ];
-
 
   constructor() { }
 
   ngOnInit(): void {
     //  this.routerList.shift()
+  }
+
+  trackByFn(index: number, item: any): number {
+    return item.route; // You can track by route or any unique property of your items
   }
 }

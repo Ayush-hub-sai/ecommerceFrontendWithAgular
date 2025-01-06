@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class PagesComponent implements OnInit {
 
     collapsed = signal(false)
-    sidenavWidth = computed(() => this.collapsed() ? '65px' : '250px')
+    sidenavWidth = computed(() => this.collapsed() ? '110px' : '250px')
 
     router = inject(Router);
     userData: any = localStorage.getItem('userData')
@@ -24,12 +24,6 @@ export class PagesComponent implements OnInit {
             this.userData.userName = this.userData.userName.charAt(0).toUpperCase() + this.userData.userName.slice(1);
         }
     }
-
-    getBackgroundColor(name: string): string {
-        const colors = ['#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF'];
-        const index = name.charCodeAt(0) % colors.length;
-        return colors[index];
-      }
 
     logout() {
         localStorage.removeItem("token")

@@ -12,9 +12,9 @@ const routes: Routes = [
         component: PagesComponent,
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: 'dashboard', component: DashboardComponent },
-            { path: 'items', component: ItemsComponent },
-            { path: 'categories', component: CategoriesComponent },
+            { path: 'dashboard', component: DashboardComponent, title: 'Dashboard' },
+            { path: 'items', component: ItemsComponent, title: "Items" },
+            { path: 'categories', component: CategoriesComponent, title: "Category" },
         ]
     }
 ];
