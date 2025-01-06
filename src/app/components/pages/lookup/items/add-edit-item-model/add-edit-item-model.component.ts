@@ -68,7 +68,4 @@ export class AddEditItemModelComponent implements OnInit {
     }
   }
 
-  close(): void {
-    this.dialogRef.close(false);
-  }
 }
