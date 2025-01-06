@@ -38,7 +38,7 @@ export class SidebarComponent implements OnInit {
         { label: 'Global Setting', route: 'global', icon: 'settings' },
       ]
     },
-    { label: 'Orders', route: 'items', icon: 'reorder' },
+    { label: 'Orders', route: 'order', icon: 'reorder' },
   ];
 
   constructor() { }

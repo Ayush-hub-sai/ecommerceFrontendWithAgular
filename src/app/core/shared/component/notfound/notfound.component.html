@@ -1,1 +1,43 @@
-<h1>The Page Is Not Found.</h1>
+<mat-toolbar class="mat-elevation-z3">
+    <button mat-icon-button (click)="collapsed.set(!collapsed())">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Spacer to push the profile section to the right -->
+    <span class="spacer"></span>
+
+    <!-- Profile icon with a menu -->
+    <button mat-icon-button [matMenuTriggerFor]="menu" title="Profile">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+
+    <!-- Profile menu -->
+    <mat-menu #menu="matMenu">
+        <div class="profile-menu">
+            <div class="profile-info">
+                <!-- Profile picture or fallback -->
+                <div *ngIf="userData.profileImageUrl; else fallbackImage" class="profile-pic-wrapper">
+                    <img [src]="userData.profileImageUrl" alt="Profile" class="profile-pic">
+                </div>
+                <ng-template #fallbackImage>
+                    <span class="userName">
+                        <p> {{ userData.userName.charAt(0).toUpperCase() }}</p>
+                    </span>
+                </ng-template>
+
+                <div class="profile-details">
+                    <div class="username">{{ userData.userName }}</div>
+                    <div class="email">{{ userData?.email }}</div>
+                </div>
+            </div>
+            <!-- Logout button -->
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </div>
+    </mat-menu>
+</mat-toolbar>
+
+
+<div class="container-fluid">
+    <h2>The page is not found, What you are looking for...</h2>
+    <button mat-raised-button color="primary" type="button" (click)="back()">Back</button>
+</div>
