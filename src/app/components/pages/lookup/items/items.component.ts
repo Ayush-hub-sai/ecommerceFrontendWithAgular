@@ -36,11 +36,12 @@ export class ItemsComponent {
 
   loadItems(): void {
     this.itemService.getItems().subscribe((items:any) => {
-      this.items = items;
+      this.items = items.data;
       this.dataSource = new MatTableDataSource(items.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+
   }
 
   openAddItemDialog(element: any): void {

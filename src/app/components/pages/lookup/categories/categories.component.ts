@@ -35,7 +35,7 @@ export class CategoriesComponent {
 
   loadcategory(): void {
     this.categoryervice.getCategories().subscribe((category: any) => {
-      this.category = category;
+      this.category = category.data;
       this.dataSource = new MatTableDataSource(category.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

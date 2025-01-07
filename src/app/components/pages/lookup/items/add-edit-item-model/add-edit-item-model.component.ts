@@ -39,7 +39,7 @@ export class AddEditItemModelComponent implements OnInit {
 
   loadcategory(): void {
     this.categoryService.getCategories().subscribe((category: any) => {
-      this.categories = category;
+      this.categories = category.data;
 
     });
   }
@@ -54,8 +54,8 @@ export class AddEditItemModelComponent implements OnInit {
 
       if (this.data?._id) {
         // Edit item
-        this.itemService.updateItem(this.data._id, this.itemForm.value).subscribe(() => {
-          this.toastr.success('Item Updated Successfully');
+        this.itemService.updateItem(this.data._id, this.itemForm.value).subscribe((response:any) => {
+          this.toastr.success(response.message);
           this.dialogRef.close(true);
         });
       } else {

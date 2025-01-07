@@ -38,9 +38,9 @@ export class AddeditcategoryComponent {
 
       if (this.data?._id) {
         // Edit category
-        this.categoryService.updateCategory(this.data._id, this.categoryForm.value).subscribe(() => {
+        this.categoryService.updateCategory(this.data._id, this.categoryForm.value).subscribe((response:any) => {
           this.dialogRef.close(true);
-          this.toastr.success("Category Updated Successfully")
+          this.toastr.success(response.message)
         });
       } else {
         // Add new category
