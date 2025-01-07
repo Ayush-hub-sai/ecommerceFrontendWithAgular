@@ -36,7 +36,7 @@ export class CategoriesComponent {
   loadcategory(): void {
     this.categoryervice.getCategories().subscribe((category: any) => {
       this.category = category;
-      this.dataSource = new MatTableDataSource(this.category);
+      this.dataSource = new MatTableDataSource(category.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -58,10 +58,9 @@ export class CategoriesComponent {
   }
 
   deleteCategory(id: string): void {
-    this.categoryervice.deleteCategory(id).subscribe(() => {
-      this.category = this.category.filter((categoryData) => categoryData._id !== id);
-      this.dataSource.data = this.category;
-      this.toastr.error("Category Deleted Successfully")
+    this.categoryervice.deleteCategory(id).subscribe((response:any) => {
+      this.loadcategory();
+      this.toastr.error(response.message);
     });
   }
 

@@ -35,9 +35,9 @@ export class ItemsComponent {
   }
 
   loadItems(): void {
-    this.itemService.getItems().subscribe((items) => {
+    this.itemService.getItems().subscribe((items:any) => {
       this.items = items;
-      this.dataSource = new MatTableDataSource(this.items);
+      this.dataSource = new MatTableDataSource(items.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -59,10 +59,9 @@ export class ItemsComponent {
   }
 
   deleteItem(id: string): void {
-    this.itemService.deleteItem(id).subscribe(() => {
-      this.items = this.items.filter((item) => item._id !== id);
-      this.dataSource.data = this.items; // Update dataSource
-      this.toastr.error("Item Deleted Successfully")
+    this.itemService.deleteItem(id).subscribe((response:any) => {
+      this.toastr.error(response.message)
+      this.loadItems();
     });
   }
 
