@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { MaterialModule } from '../../../core/shared/material/material.module';
 import { AuthService } from '../../../core/services/auth/authService/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,13 @@ import { AuthService } from '../../../core/services/auth/authService/auth.servic
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private toster: ToastrService
+  ) {
+
     // Redirect if already logged in
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/pages/dashboard']);
@@ -44,9 +51,10 @@ export class LoginComponent {
 
           localStorage.setItem('userData', JSON.stringify(userData)); // Save the token
           this.router.navigate(['/pages/dashboard']);
+          this.toster.success(response.message)
         },
         error: (err) => {
-          console.error('Login failed', err);
+          this.toster.error("Invalid Credentials")
         },
       });
     }

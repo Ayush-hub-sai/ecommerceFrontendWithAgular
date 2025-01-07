@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MaterialModule } from '../../../../core/shared/material/material.module';
 import { CurrencyPipe } from '@angular/common';
 import { Category } from '../../../../core/models/lookup/category';
@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CategoryService } from '../../../../core/services/pagesService/lookup/category/category.service';
 import { AddeditcategoryComponent } from './addeditcategory/addeditcategory.component';
 import { ToastrService } from 'ngx-toastr';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-categories',
@@ -18,6 +20,9 @@ export class CategoriesComponent {
   category: Category[] = [];
   dataSource = new MatTableDataSource<Category>();
   displayedColumns: string[] = ['position', 'name', 'actions'];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
 
   constructor(
     private categoryervice: CategoryService,
@@ -31,7 +36,9 @@ export class CategoriesComponent {
   loadcategory(): void {
     this.categoryervice.getCategories().subscribe((category: any) => {
       this.category = category;
-      this.dataSource.data = this.category; // Bind to Material Table
+      this.dataSource = new MatTableDataSource(this.category);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
@@ -54,7 +61,13 @@ export class CategoriesComponent {
     this.categoryervice.deleteCategory(id).subscribe(() => {
       this.category = this.category.filter((categoryData) => categoryData._id !== id);
       this.dataSource.data = this.category;
-      this.toastr.error("Item Deleted Successfully")
+      this.toastr.error("Category Deleted Successfully")
     });
   }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }

@@ -78,3 +78,21 @@ mat-sidenav-content {
         margin-bottom: 0;
     }
 }
+
+.righthumburger {
+    display: flex;
+    position: relative;
+    top: 55px;
+    background: rebeccapurple;
+    left: 214px;
+    transition: all 500ms ease-in-out;
+}
+
+.lefthumburger {
+    display: flex;
+    position: relative;
+    top: 55px;
+    background: rebeccapurple;
+    left: 75px;
+    transition: all 500ms ease-in-out;
+}

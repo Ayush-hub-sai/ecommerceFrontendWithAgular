@@ -22,4 +22,9 @@ export class AuthService {
     return !!localStorage.getItem('token'); // Returns true if token exists
   }
 
+  logout() {
+    localStorage.removeItem("token")
+    this.router.navigate(['/auth/login']);
+  }
+
 }

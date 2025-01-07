@@ -3,6 +3,8 @@ import { MaterialModule } from '../../core/shared/material/material.module';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from "../../core/shared/component/sidebar/sidebar.component";
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../core/services/auth/authService/auth.service';
 
 @Component({
     selector: 'app-pages',
@@ -18,6 +20,10 @@ export class PagesComponent implements OnInit {
     router = inject(Router);
     userData: any = localStorage.getItem('userData')
 
+    toster = inject(ToastrService);
+    authService = inject(AuthService);
+
+
     ngOnInit(): void {
         if (this.userData) {
             this.userData = JSON.parse(this.userData);
@@ -26,7 +32,7 @@ export class PagesComponent implements OnInit {
     }
 
     logout() {
-        localStorage.removeItem("token")
-        this.router.navigate(['/auth/login']);
+        this.authService.logout();
+        this.toster.success("User Logout Successfully.")
     }
 }

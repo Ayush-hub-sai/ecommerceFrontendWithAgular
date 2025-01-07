@@ -1,6 +1,12 @@
 <mat-toolbar class="mat-elevation-z3">
-    <button mat-icon-button (click)="collapsed.set(!collapsed())">
+    <button mat-icon-button (click)="collapsed.set(!collapsed())"
+        [ngClass]="collapsed()?'lefthumburger':'righthumburger'">
+        @if(collapsed()){
         <mat-icon>menu</mat-icon>
+        }
+        @else {
+        <mat-icon>keyboard_arrow_left</mat-icon>
+        }
     </button>
 
     <!-- Spacer to push the profile section to the right -->
@@ -12,7 +18,7 @@
     </button>
 
     <!-- Profile menu -->
-    <mat-menu #menu="matMenu" >
+    <mat-menu #menu="matMenu">
         <div class="profile-menu">
             <div class="profile-info">
                 <!-- Profile picture or fallback -->

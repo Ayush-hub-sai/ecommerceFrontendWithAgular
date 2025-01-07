@@ -2,6 +2,8 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../services/auth/authService/auth.service';
 
 @Component({
   selector: 'app-notfound',
@@ -15,6 +17,8 @@ export class NotfoundComponent {
 
   router = inject(Router);
   userData: any = localStorage.getItem('userData')
+  toster = inject(ToastrService);
+  authService=inject(AuthService);
 
   ngOnInit(): void {
     if (this.userData) {
@@ -24,11 +28,11 @@ export class NotfoundComponent {
   }
 
   logout() {
-    localStorage.removeItem("token")
-    this.router.navigate(['/auth/login']);
+    this.authService.logout();
+    this.toster.success("User Logout Successfully.")
   }
 
-  back(){
+  back() {
     history.back();
   }
 }
