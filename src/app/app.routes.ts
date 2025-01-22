@@ -13,6 +13,6 @@ export const routes: Routes = [
       loadChildren: () => import('./components/pages/pages.module').then(m => m.PagesModule),
       canActivate: [AuthGuard],
     },
-    { path: '**', component:NotfoundComponent }
+    { path: '**', component:NotfoundComponent, title:"page is not found" }
   ];
   

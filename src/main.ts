@@ -4,7 +4,7 @@ import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment.development';
 import { enableProdMode } from '@angular/core';
 
-// Disable the console on live and test site
+// Disable the console.log on live and test site
 if (environment.production) {
   enableProdMode();
   window.console.log = () => { }
