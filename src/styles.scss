@@ -14,5 +14,23 @@ table thead tr{
   justify-content:space-between;
   margin-bottom: 16px;
   margin-top: 10px;
-  padding: 10px;
+  padding: 10px 30px;
 }
+
+.mat-card-bg{
+  background: white !important;
+}
+
+.mdc-dialog--open .mat-mdc-dialog-surface, .mdc-dialog--closing .mat-mdc-dialog-surface {
+  transform: none;
+  background: white;
+}
+
+.mat-mdc-select-panel-above div.mat-mdc-select-panel{
+  background: white;
+}
+
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel {
+  background: white;
+}
+
