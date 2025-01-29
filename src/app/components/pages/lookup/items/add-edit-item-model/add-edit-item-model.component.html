@@ -26,6 +26,19 @@
             </mat-select>
             <mat-error *ngIf="itemForm.get('category')?.invalid">Category is required</mat-error>
         </mat-form-field>
+
+        <!-- Image -->
+        <mat-form-field appearance="outline">
+            <mat-label>Image URL</mat-label>
+            <input matInput formControlName="image" placeholder="Enter Image URL" type="text">
+            <mat-error *ngIf="itemForm.controls['image'].invalid && itemForm.controls['image'].touched">
+                Image URL is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Preview the image if available -->
+        <img *ngIf="itemForm.value.image" [src]="itemForm.value.image" alt="Preview" width="100">
+
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">

@@ -30,6 +30,7 @@ export class AddEditItemModelComponent implements OnInit {
       name: [data?.name || '', Validators.required],
       category: [data?.category?._id || '', Validators.required],
       price: [data?.price || null, [Validators.required, Validators.min(0)]],
+      image: [data?.image || '', Validators.required]
     });
   }
 
@@ -50,17 +51,17 @@ export class AddEditItemModelComponent implements OnInit {
       itemName = itemName.charAt(0).toUpperCase() + itemName.slice(1);
       this.itemForm.patchValue({
         name: itemName
-      })
-
+      });
+  
       if (this.data?._id) {
         // Edit item
-        this.itemService.updateItem(this.data._id, this.itemForm.value).subscribe((response:any) => {
+        this.itemService.updateItem(this.data._id, this.itemForm.value).subscribe((response: any) => {
           this.toastr.success(response.message);
           this.dialogRef.close(true);
         });
       } else {
         // Add new item
-        this.itemService.addItem(this.itemForm.value).subscribe((response:any) => {
+        this.itemService.addItem(this.itemForm.value).subscribe((response: any) => {
           this.toastr.success(response?.message);
           this.dialogRef.close(true);
         });

@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Item } from '../../../../core/models/lookup/item';
 import { AddEditItemModelComponent } from './add-edit-item-model/add-edit-item-model.component';
 import { MaterialModule } from '../../../../core/shared/material/material.module';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ItemService } from '../../../../core/services/pagesService/lookup/item/item.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,14 +13,14 @@ import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-items',
-  imports: [MaterialModule, CurrencyPipe],
+  imports: [MaterialModule, CurrencyPipe, CommonModule],
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent {
   items: Item[] = [];
   dataSource = new MatTableDataSource<Item>();
-  displayedColumns: string[] = ['position', 'name', 'price', 'category', 'actions'];
+  displayedColumns: string[] = ['position', 'name','image', 'price', 'category', 'actions'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
