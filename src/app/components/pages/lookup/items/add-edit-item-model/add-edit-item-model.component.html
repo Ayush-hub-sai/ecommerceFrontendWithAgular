@@ -27,18 +27,29 @@
             <mat-error *ngIf="itemForm.get('category')?.invalid">Category is required</mat-error>
         </mat-form-field>
 
-        <!-- Image -->
-        <mat-form-field appearance="outline">
-            <mat-label>Image URL</mat-label>
-            <input matInput formControlName="image" placeholder="Enter Image URL" type="text">
-            <mat-error *ngIf="itemForm.controls['image'].invalid && itemForm.controls['image'].touched">
-                Image URL is required.
-            </mat-error>
-        </mat-form-field>
+        <!-- Image URL with Increment Button in One Row -->
+        <div style="display: flex; align-items: center; width: 100%;">
+            <mat-form-field appearance="outline" style="flex: 1; margin-right: 8px;">
+                <mat-label>Image URL</mat-label>
+                <input matInput formControlName="image" placeholder="Enter Image URL" type="text">
+                <mat-error *ngIf="itemForm.controls['image'].invalid && itemForm.controls['image'].touched">
+                    Image URL is required.
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="button" (click)="increment()">+</button>
+        </div>
 
-        <!-- Preview the image if available -->
-        <img *ngIf="itemForm.value.image" [src]="itemForm.value.image" alt="Preview" width="100">
-
+        <div *ngIf="imageList.length > 0" style="display: flex;">  
+            <div *ngFor="let image of imageList; let index = index" style="position: relative; margin-right: 10px;">  
+                <img [src]="image" alt="Preview" width="100" class="img-bor" style="height: auto; display: block;">  
+                
+                <!-- Cross icon for removing the image -->  
+                <button mat-icon-button (click)="decrement(index)"  type="button" 
+                    style="position: absolute; top: 0; right: 0; z-index: 1;">  
+                    <mat-icon color="warn">cancel</mat-icon>  
+                </button>  
+            </div>  
+        </div>
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">

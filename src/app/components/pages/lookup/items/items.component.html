@@ -36,7 +36,7 @@
         <ng-container matColumnDef="image">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Image</th>
             <td mat-cell *matCellDef="let element">
-                <img *ngIf="element.image" [src]="element.image" alt="Item Image" width="50" height="50">
+                <img *ngIf="element.image" [src]="element.image[0]" alt="Item Image" width="50" height="50" class="img-bor">
             </td>
         </ng-container>
 

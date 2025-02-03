@@ -15,8 +15,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './add-edit-item-model.component.scss'
 })
 export class AddEditItemModelComponent implements OnInit {
-  itemForm: FormGroup;
+  itemForm!: FormGroup;
   categories: Category[] = [];
+  imageList: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -26,16 +27,27 @@ export class AddEditItemModelComponent implements OnInit {
     private dialogRef: MatDialogRef<AddEditItemModelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.itemForm = this.fb.group({
-      name: [data?.name || '', Validators.required],
-      category: [data?.category?._id || '', Validators.required],
-      price: [data?.price || null, [Validators.required, Validators.min(0)]],
-      image: [data?.image || '', Validators.required]
-    });
+
   }
 
   ngOnInit(): void {
     this.loadcategory();
+    this.loadItem()
+  }
+
+  loadItem() {
+    this.itemForm = this.fb.group({
+      name: [this.data?.name || '', Validators.required],
+      category: [this.data?.category?._id || '', Validators.required],
+      price: [this.data?.price || null, [Validators.required, Validators.min(0)]],
+      image: ['', Validators.required]
+    });
+    
+    if(this.data.image.length>0){
+      this.data.image.forEach((img: any) => {
+        this.imageList.push(img)
+      });
+    }
   }
 
   loadcategory(): void {
@@ -45,14 +57,40 @@ export class AddEditItemModelComponent implements OnInit {
     });
   }
 
+  increment() {
+    const imageValue = this.itemForm.controls['image'].value;
+    if (imageValue) {
+      this.imageList.push(imageValue);
+      this.itemForm.controls['image'].setValue('');
+    }
+    this.updateImageValidate();
+  }
+
+  decrement(index: number) {
+    if (index > -1) {
+      this.imageList.splice(index, 1);
+    }
+    this.updateImageValidate()
+  }
+
+  updateImageValidate() {
+    if (this.imageList.length > 0) {
+      this.itemForm.controls['image'].clearValidators();
+    } else {
+      this.itemForm.controls['image'].setValidators([Validators.required]);
+    }
+    this.itemForm.controls['image'].updateValueAndValidity();
+  }
+
   save(): void {
     if (this.itemForm.valid) {
       let itemName = this.itemForm.value.name;
       itemName = itemName.charAt(0).toUpperCase() + itemName.slice(1);
       this.itemForm.patchValue({
-        name: itemName
+        name: itemName,
+        image: this.imageList
       });
-  
+
       if (this.data?._id) {
         // Edit item
         this.itemService.updateItem(this.data._id, this.itemForm.value).subscribe((response: any) => {
