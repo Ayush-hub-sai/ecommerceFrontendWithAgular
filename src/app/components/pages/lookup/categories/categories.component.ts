@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MaterialModule } from '../../../../core/shared/material/material.module';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Category } from '../../../../core/models/lookup/category';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,14 +12,14 @@ import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-categories',
-  imports: [MaterialModule],
+  imports: [MaterialModule, CommonModule],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })
 export class CategoriesComponent {
   category: Category[] = [];
   dataSource = new MatTableDataSource<Category>();
-  displayedColumns: string[] = ['position', 'name', 'actions'];
+  displayedColumns: string[] = ['position', 'name', 'image', 'actions'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 

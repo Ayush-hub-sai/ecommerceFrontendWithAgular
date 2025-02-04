@@ -31,6 +31,14 @@
             <td mat-cell *matCellDef="let element">{{ element.name }}</td>
         </ng-container>
 
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Image</th>
+            <td mat-cell *matCellDef="let element">
+                <img *ngIf="element.image" [src]="element.image" alt="Category Image" width="50" height="50" class="img-bor">
+            </td>
+        </ng-container>
+
         <!-- Actions Column -->
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Actions</th>

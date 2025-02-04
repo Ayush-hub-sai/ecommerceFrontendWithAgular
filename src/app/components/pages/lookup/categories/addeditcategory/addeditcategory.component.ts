@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MaterialModule } from '../../../../../core/shared/material/material.module';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CategoryService } from '../../../../../core/services/pagesService/lookup/category/category.service';
@@ -12,8 +12,8 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './addeditcategory.component.html',
   styleUrl: './addeditcategory.component.scss'
 })
-export class AddeditcategoryComponent {
-  categoryForm: FormGroup;
+export class AddeditcategoryComponent implements OnInit {
+  categoryForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -22,12 +22,19 @@ export class AddeditcategoryComponent {
     private dialogRef: MatDialogRef<AddeditcategoryComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    
+  }
+
+  ngOnInit(): void {
+    this.loadCategory()
+  }
+
+  loadCategory(){
+    console.log(this.data);
     this.categoryForm = this.fb.group({
-      name: [data?.name || '', Validators.required],
+      name: [this.data?.name || '', Validators.required],
+      image: [this.data?.image ||'', Validators.required]
     });
-
-    console.log(data);
-
   }
 
   save(): void {

@@ -7,6 +7,22 @@
             <input matInput formControlName="name" />
             <mat-error *ngIf="categoryForm.get('name')?.invalid">Category Name is required</mat-error>
         </mat-form-field>
+
+        <!-- Image URL with Increment Button in One Row -->
+        <mat-form-field appearance="outline">
+            <mat-label>Image URL</mat-label>
+            <input matInput formControlName="image" placeholder="Enter Image URL" type="text">
+            <mat-error *ngIf="categoryForm.controls['image'].invalid && categoryForm.controls['image'].touched">
+                Image URL is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- preview image -->
+        <div *ngIf="categoryForm.controls['image'].value">
+            <img [src]="categoryForm.controls['image'].value" alt="Preview" width="100" class="img-bor"
+                style="height: auto; display: block;">
+        </div>
+
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">
