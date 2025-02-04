@@ -47,6 +47,7 @@ export class AddEditItemModelComponent implements OnInit {
       this.data.image.forEach((img: any) => {
         this.imageList.push(img)
       });
+      this.updateImageValidate();
     }
   }
 
