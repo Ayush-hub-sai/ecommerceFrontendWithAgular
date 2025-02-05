@@ -10,19 +10,42 @@ import { ItemService } from '../../../../core/services/pagesService/lookup/item/
 import { ToastrService } from 'ngx-toastr';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { GalleriaModule } from 'primeng/galleria';
+import { Image } from 'primeng/image';
 
 @Component({
   selector: 'app-items',
-  imports: [MaterialModule, CurrencyPipe, CommonModule],
+  imports: [MaterialModule, CurrencyPipe, CommonModule, GalleriaModule, Image],
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent {
   items: Item[] = [];
   dataSource = new MatTableDataSource<Item>();
-  displayedColumns: string[] = ['position', 'name','image', 'price', 'category', 'actions'];
+  displayedColumns: string[] = ['position', 'name', 'image', 'price', 'category', 'actions'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  // position: string = 'bottom';
+  // showIndicatorsOnItem: boolean = false;
+  // positionOptions = [
+  //   {
+  //     label: 'Bottom',
+  //     value: 'bottom'
+  //   },
+  //   {
+  //     label: 'Top',
+  //     value: 'top'
+  //   },
+  //   {
+  //     label: 'Left',
+  //     value: 'left'
+  //   },
+  //   {
+  //     label: 'Right',
+  //     value: 'right'
+  //   }
+  // ];
 
   constructor(
     private itemService: ItemService,
@@ -35,7 +58,7 @@ export class ItemsComponent {
   }
 
   loadItems(): void {
-    this.itemService.getItems().subscribe((items:any) => {
+    this.itemService.getItems().subscribe((items: any) => {
       this.items = items.data;
       this.dataSource = new MatTableDataSource(items.data);
       this.dataSource.paginator = this.paginator;
@@ -60,7 +83,7 @@ export class ItemsComponent {
   }
 
   deleteItem(id: string): void {
-    this.itemService.deleteItem(id).subscribe((response:any) => {
+    this.itemService.deleteItem(id).subscribe((response: any) => {
       this.toastr.error(response.message)
       this.loadItems();
     });
@@ -70,5 +93,5 @@ export class ItemsComponent {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
+
 }
