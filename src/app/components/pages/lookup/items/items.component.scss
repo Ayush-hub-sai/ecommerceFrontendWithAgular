@@ -32,8 +32,27 @@ mat-form-field {
 }
 
 ::ng-deep .p-galleria {
-  border: none !important;
+  max-width: 100px !important;
+  max-height: 100px !important;
+  background: transparent !important;
+  border: 0.5px solid rgb(221, 219, 219) !important;
   box-shadow: none !important;
   outline: none !important;
-  background: transparent !important;
 }
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+}
+
+::ng-deep .p-galleria-indicator-list{
+  background: none !important;
+}
+
+::ng-deep .p-galleria-inset-indicators.p-galleria-indicators-bottom .p-galleria-indicator-list {
+  bottom: -10px !important;
+}
+

@@ -25,27 +25,7 @@ export class ItemsComponent {
   displayedColumns: string[] = ['position', 'name', 'image', 'price', 'category', 'actions'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
-  // position: string = 'bottom';
-  // showIndicatorsOnItem: boolean = false;
-  // positionOptions = [
-  //   {
-  //     label: 'Bottom',
-  //     value: 'bottom'
-  //   },
-  //   {
-  //     label: 'Top',
-  //     value: 'top'
-  //   },
-  //   {
-  //     label: 'Left',
-  //     value: 'left'
-  //   },
-  //   {
-  //     label: 'Right',
-  //     value: 'right'
-  //   }
-  // ];
+  isLoading:boolean = true;
 
   constructor(
     private itemService: ItemService,
@@ -58,13 +38,22 @@ export class ItemsComponent {
   }
 
   loadItems(): void {
-    this.itemService.getItems().subscribe((items: any) => {
-      this.items = items.data;
-      this.dataSource = new MatTableDataSource(items.data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    this.isLoading = true;
+    
+    this.itemService.getItems().subscribe({
+      next: (items: any) => {
+        this.items = items.data;
+        this.dataSource = new MatTableDataSource(items.data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error: (error) => {
+        console.error("Error loading items:", error);
+      },
+      complete: () => {
+        this.isLoading = false; 
+      }
     });
-
   }
 
   openAddItemDialog(element: any): void {

@@ -35,7 +35,7 @@
         <ng-container matColumnDef="image">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Image</th>
             <td mat-cell *matCellDef="let element">
-                <img *ngIf="element.image" [src]="element.image" alt="Category Image" width="50" height="50" class="img-bor">
+                <img *ngIf="element.image" [src]="element.image" alt="Category Image" width="70" height="70" class="img-bor">
             </td>
         </ng-container>
 
@@ -43,10 +43,10 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let element">
-                <button mat-icon-button color="accent" (click)="openAddCategoryDialog(element)">
+                <button mat-mini-fab color="accent" (click)="openAddCategoryDialog(element)">
                     <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button color="warn" (click)="deleteCategory(element._id)">
+                </button> &nbsp;
+                <button mat-mini-fab color="warn" (click)="deleteCategory(element._id)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>
