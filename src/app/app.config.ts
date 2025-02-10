@@ -15,9 +15,11 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), // Provide the routing
     provideAnimationsAsync(), // Optional for animations
-    provideHttpClient(withInterceptors([authInterceptor])),
-    provideHttpClient(withInterceptors([jwtInterceptor])),
-    provideHttpClient(withInterceptors([errorInterceptor])),
+    provideHttpClient(
+      withInterceptors([authInterceptor]),
+      withInterceptors([jwtInterceptor]),
+      withInterceptors([errorInterceptor])
+    ),
     provideAnimations(), // required animations providers
     provideToastr({
       timeOut: 2000,
