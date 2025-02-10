@@ -9,7 +9,7 @@ export const routes: Routes = [
       loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule),
     },
     {
-      path: 'pages',
+      path: '',
       loadChildren: () => import('./components/pages/pages.module').then(m => m.PagesModule),
       canActivate: [AuthGuard],
     },

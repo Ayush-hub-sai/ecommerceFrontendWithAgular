@@ -7,10 +7,11 @@ import { ItemService } from '../../../../../core/services/pagesService/lookup/it
 import { Category } from '../../../../../core/models/lookup/category';
 import { CategoryService } from '../../../../../core/services/pagesService/lookup/category/category.service';
 import { ToastrService } from 'ngx-toastr';
+import { Image } from 'primeng/image';
 
 @Component({
   selector: 'app-add-edit-item-model',
-  imports: [MaterialModule, ReactiveFormsModule, CommonModule],
+  imports: [MaterialModule, ReactiveFormsModule, CommonModule, Image],
   templateUrl: './add-edit-item-model.component.html',
   styleUrl: './add-edit-item-model.component.scss'
 })

@@ -42,7 +42,7 @@
         <!-- preview image -->
         <div *ngIf="imageList.length > 0" style="display: flex;">  
             <div *ngFor="let image of imageList; let index = index" style="position: relative; margin-right: 10px;">  
-                <img [src]="image" alt="Preview" width="100" class="img-bor" style="height: auto; display: block;">  
+                <p-image  [src]="image" alt="Item Image" width="100" class="imageStyle" [preview]="true" />
                 
                 <!-- Cross icon for removing the image -->  
                 <button mat-icon-button (click)="decrement(index)"  type="button" 

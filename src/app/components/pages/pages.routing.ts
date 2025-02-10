@@ -13,8 +13,16 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent, title: 'Dashboard' },
-            { path: 'items', component: ItemsComponent, title: "Items" },
-            { path: 'categories', component: CategoriesComponent, title: "Category" },
+
+            {
+                path: 'lookup',
+                loadChildren: () => import('../pages/lookup/lookup.module').then(m => m.LookUpModule),
+            },
+
+            {
+                path: 'marketing',
+                loadChildren: () => import('../pages/marketing/marketing.module').then(m => m.MarketingModule),
+            },
         ]
     }
 ];

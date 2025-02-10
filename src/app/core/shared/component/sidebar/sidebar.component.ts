@@ -25,8 +25,19 @@ export class SidebarComponent implements OnInit {
       route: '',
       icon: 'group_work',
       submenu: [
-        { label: 'Items', route: 'items', icon: 'shopping_cart' },
-        { label: 'Category', route: 'categories', icon: 'category' },
+        { label: 'Items', route: 'lookup/items', icon: 'shopping_cart' },
+        { label: 'Category', route: 'lookup/categories', icon: 'category' },
+        { label: 'Stocks', route: 'lookup/stocks', icon: 'inventory_2' },
+      ]
+    },
+    {
+      label: 'Marketing',
+      route: '',
+      icon: 'local_offer',
+      submenu: [
+        { label: 'Coupon', route: 'marketing/coupon', icon: 'discount' },
+        { label: 'Recommend', route: 'marketing/recommend', icon: 'recommend' },
+        { label: 'Bought Together', route: 'marketing/bought-together', icon: 'group_work' },
       ]
     },
     {

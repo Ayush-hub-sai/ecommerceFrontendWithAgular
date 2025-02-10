@@ -50,7 +50,7 @@ export class LoginComponent {
           }
 
           localStorage.setItem('userData', JSON.stringify(userData)); // Save the token
-          this.router.navigate(['/pages/dashboard']);
+          this.router.navigate(['dashboard']);
           this.toster.success(response.message)
         },
         error: (err) => {

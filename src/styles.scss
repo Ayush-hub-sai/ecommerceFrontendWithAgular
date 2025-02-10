@@ -1,32 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 
-table thead tr{
+table thead tr {
   background: #e3d9d975 !important;
 }
 
 .searchAdd {
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
   margin-bottom: 16px;
   margin-top: 10px;
   padding: 10px 30px;
 }
 
-.mat-card-bg{
+.mat-card-bg {
   background: white !important;
 }
 
-.mdc-dialog--open .mat-mdc-dialog-surface, .mdc-dialog--closing .mat-mdc-dialog-surface {
+.mdc-dialog--open .mat-mdc-dialog-surface,
+.mdc-dialog--closing .mat-mdc-dialog-surface {
   transform: none;
   background: white;
 }
 
-.mat-mdc-select-panel-above div.mat-mdc-select-panel{
+.mat-mdc-select-panel-above div.mat-mdc-select-panel {
   background: white;
 }
 
@@ -34,7 +42,7 @@ table thead tr{
   background: white;
 }
 
-.img-bor{
+.img-bor {
   border-radius: 4px;
 }
 
@@ -45,10 +53,19 @@ table thead tr{
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.7); /* Light background mask */
+  background: rgba(255, 255, 255, 0.7);
+  /* Light background mask */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
+.p-image-toolbar {
+  margin-top: 100px !important;
+}
+
+.p-image-original {
+  max-width: 50vw !important;
+  max-height: 50vh !important;
+}

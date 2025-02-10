@@ -9,10 +9,10 @@ import { AddeditcategoryComponent } from './addeditcategory/addeditcategory.comp
 import { ToastrService } from 'ngx-toastr';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
+import { Image } from 'primeng/image';
 @Component({
   selector: 'app-categories',
-  imports: [MaterialModule, CommonModule],
+  imports: [MaterialModule, CommonModule, Image],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })
