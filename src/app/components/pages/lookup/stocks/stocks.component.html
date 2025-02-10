@@ -1,22 +1,14 @@
 <mat-card class="mat-card-bg">
-
     <mat-card-header>
         <mat-card-title>Stocks Management</mat-card-title>
     </mat-card-header>
 
     <div class="searchAdd">
-        <!-- Search Section on the Left -->
+        <!-- Search Section -->
         <mat-form-field class="example-form-field" appearance="outline" style="flex: 1; max-width: 300px;">
             <mat-label>Search</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Search items">
         </mat-form-field>
-
-        <!-- Add New Item Button on the Right -->
-        <!-- <div>
-            <button mat-raised-button color="primary" (click)="openAddItemDialog('add')">
-                Add New Item
-            </button>
-        </div> -->
     </div>
 
     <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
@@ -29,33 +21,40 @@
             <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
         </ng-container>
 
-        <!-- Name Column -->
+        <!-- Item Name -->
         <ng-container matColumnDef="itemName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Item Name</th>
             <td mat-cell *matCellDef="let element">{{ element.item.name }}</td>
         </ng-container>
 
-        <!-- Price Column -->
+        <!-- Stock Quantity -->
         <ng-container matColumnDef="stockQuantity">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock Quantity</th>
-            <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock Quantity </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline" class="quantity-field">
+                    <input matInput type="number" [(ngModel)]="element.newQuantity" (input)="onQuantityChange(element)"
+                        placeholder="Enter quantity" min="0" max="9999">
+                </mat-form-field>
+            </td>
         </ng-container>
 
-        <!-- Category Column -->
+        <!-- Is OutofStock -->
         <ng-container matColumnDef="isOutofStocks">
             <th mat-header-cell *matHeaderCellDef>Is OutofStock</th>
-            <td mat-cell *matCellDef="let element">{{ element?.isOutOfStock }}</td>
+            <td mat-cell *matCellDef="let element">
+                <mat-slide-toggle [(ngModel)]="element.isOutOfStock" color="primary">
+                    {{ element.isOutOfStock ? 'Out of Stock' : 'In Stock' }}
+                </mat-slide-toggle>
+            </td>
         </ng-container>
 
         <!-- Actions Column -->
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let element">
-                <button mat-mini-fab color="accent" (click)="openAddItemDialog(element)">
-                    <mat-icon>edit</mat-icon>
-                </button> &nbsp;
-                <button mat-mini-fab color="warn" (click)="deleteItem(element._id)">
-                    <mat-icon>delete</mat-icon>
+                <button mat-raised-button color="primary" (click)="updateQuantity(element)"
+                    [disabled]="element.newQuantity === element.quantity || !element.newQuantity">
+                    Update
                 </button>
             </td>
         </ng-container>
@@ -65,5 +64,4 @@
     </table>
 
     <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
-
 </mat-card>
