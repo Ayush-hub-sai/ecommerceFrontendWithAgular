@@ -1,22 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MarketingComponent } from './marketing.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { RecommendItemComponent } from './recommend-item/recommend-item.component';
 import { BoughtTogetherItemComponent } from './bought-together-item/bought-together-item.component';
 
 const lookuproutes: Routes = [
-    {
-        path: '',
-        component: MarketingComponent,
-        children: [
-            { path: 'coupon', component: CouponComponent, title: "Coupon" },
-            { path: 'recommend', component: RecommendItemComponent, title: "Recommend Item" },
-            { path: 'bought-together', component: BoughtTogetherItemComponent, title: "Bought Together Item" },
-        ]
-    }
+    { path: 'coupon', component: CouponComponent, title: "Coupon" },
+    { path: 'recommend', component: RecommendItemComponent, title: "Recommend Item" },
+    { path: 'bought-together', component: BoughtTogetherItemComponent, title: "Bought Together Item" },
 ];
-
 
 @NgModule({
     imports: [RouterModule.forChild(lookuproutes)],

@@ -3,18 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { ItemsComponent } from './items/items.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { StocksComponent } from './stocks/stocks.component';
-import { LookupComponent } from './lookup.component';
 
 const lookuproutes: Routes = [
-    {
-        path: '',
-        component: LookupComponent,
-        children: [
-            { path: 'items', component: ItemsComponent, title: "Items" },
-            { path: 'categories', component: CategoriesComponent, title: "Categories" },
-            { path: 'stocks', component: StocksComponent, title: "Stocks" },
-        ]
-    }
+    { path: 'items', component: ItemsComponent, title: "Items" },
+    { path: 'categories', component: CategoriesComponent, title: "Categories" },
+    { path: 'stocks', component: StocksComponent, title: "Stocks" },
 ];
 
 
