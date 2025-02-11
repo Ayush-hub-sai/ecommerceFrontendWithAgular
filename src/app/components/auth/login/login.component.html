@@ -1,6 +1,6 @@
 <div class="login-container">
     <mat-card class="login-card">
-        <mat-card-header  style="margin-bottom: 20px;">
+        <mat-card-header style="margin-bottom: 20px;">
             <mat-card-title>Login</mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -14,11 +14,17 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password" formControlName="password" required />
+                    <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required />
+
+                    <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+                        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                    
                     <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
                         Password is required
                     </mat-error>
                 </mat-form-field>
+
                 <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
                     Login
                 </button>

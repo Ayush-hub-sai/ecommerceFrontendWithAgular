@@ -56,7 +56,6 @@ export class StocksComponent implements OnInit, AfterViewInit {
   }
 
   sortByItemName() {
-    console.log("bishnu");
     this.stockData.sort((a, b) => a.item.name.localeCompare(b.item.name));
     console.log(this.stockData);
   }

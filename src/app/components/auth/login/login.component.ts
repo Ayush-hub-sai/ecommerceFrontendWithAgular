@@ -19,6 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  hidePassword = true;  
 
   constructor(
     private fb: FormBuilder,
@@ -60,7 +61,9 @@ export class LoginComponent {
     }
   }
 
-
+  togglePasswordVisibility(): void {
+    this.hidePassword = !this.hidePassword;
+  }
 
 
 }

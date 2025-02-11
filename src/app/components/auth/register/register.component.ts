@@ -17,6 +17,7 @@ import { AuthService } from '../../../core/services/auth/authService/auth.servic
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  hidePassword = true;  
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
@@ -43,6 +44,10 @@ export class RegisterComponent {
     } else {
       console.warn('Form is invalid');
     }
+  }
+
+  togglePasswordVisibility(): void {
+    this.hidePassword = !this.hidePassword;
   }
   
 }
