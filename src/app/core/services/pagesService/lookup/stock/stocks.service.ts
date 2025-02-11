@@ -32,8 +32,12 @@ export class StocksService {
     return this.http.get(`${this.baseUrl}/${itemId}`);
   }
 
+  updateStock(itemId: string, quantity: number): Observable<any> { 
+    return this.http.put(`${this.baseUrl}/update`, { itemId, quantity });
+  }
+
   deleteStock(id: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
-
+  
 }

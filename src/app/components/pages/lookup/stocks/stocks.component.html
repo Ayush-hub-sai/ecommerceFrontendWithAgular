@@ -21,9 +21,9 @@
             <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
         </ng-container>
 
-        <!-- Item Name -->
+        <!-- Item Name Column -->
         <ng-container matColumnDef="itemName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Item Name</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="name">Item Name</th>
             <td mat-cell *matCellDef="let element">{{ element.item.name }}</td>
         </ng-container>
 
@@ -32,8 +32,8 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock Quantity </th>
             <td mat-cell *matCellDef="let element">
                 <mat-form-field appearance="outline" class="quantity-field">
-                    <input matInput type="number" [(ngModel)]="element.newQuantity" (input)="onQuantityChange(element)"
-                        placeholder="Enter quantity" min="0" max="9999">
+                    <input matInput type="number" [(ngModel)]="element.newQuantity" placeholder="Enter quantity" min="0"
+                        max="9999">
                 </mat-form-field>
             </td>
         </ng-container>
@@ -42,7 +42,7 @@
         <ng-container matColumnDef="isOutofStocks">
             <th mat-header-cell *matHeaderCellDef>Is OutofStock</th>
             <td mat-cell *matCellDef="let element">
-                <mat-slide-toggle [(ngModel)]="element.isOutOfStock" color="primary">
+                <mat-slide-toggle [(ngModel)]="element.isOutOfStock" color="primary" (click)="setOutOfStock(element)">
                     {{ element.isOutOfStock ? 'Out of Stock' : 'In Stock' }}
                 </mat-slide-toggle>
             </td>
