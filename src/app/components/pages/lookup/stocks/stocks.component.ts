@@ -47,7 +47,6 @@ export class StocksComponent implements OnInit, AfterViewInit {
           ...stock,
           newQuantity: stock.quantity
         }));
-
         this.dataSource.data = this.stockData;
       },
       error: (error) => console.error("Error loading stocks:", error),
@@ -99,7 +98,7 @@ export class StocksComponent implements OnInit, AfterViewInit {
     // Custom sorting for nested property (item.name)
     this.dataSource.sortingDataAccessor = (item: any, property) => {
       switch (property) {
-        case 'name': return item.item.name.toLowerCase();
+        case 'name': return item?.item?.name.toLowerCase();
         default: return item[property];
       }
     };
