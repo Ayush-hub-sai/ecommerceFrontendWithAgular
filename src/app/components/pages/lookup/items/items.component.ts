@@ -58,7 +58,7 @@ export class ItemsComponent {
 
   openAddItemDialog(element: any): void {
     const dialogRef = this.dialog.open(AddEditItemModelComponent, {
-      width: '600px',
+      width: '800px',
       data: element == 'add' ? null : element, // Pass null for add functionality
       position: { top: '40px' },
       disableClose: true

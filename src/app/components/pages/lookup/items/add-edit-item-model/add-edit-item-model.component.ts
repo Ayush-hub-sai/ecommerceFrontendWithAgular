@@ -55,7 +55,6 @@ export class AddEditItemModelComponent implements OnInit {
   loadcategory(): void {
     this.categoryService.getCategories().subscribe((category: any) => {
       this.categories = category.data;
-
     });
   }
 

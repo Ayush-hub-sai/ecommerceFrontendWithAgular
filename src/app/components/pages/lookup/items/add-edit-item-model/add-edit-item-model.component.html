@@ -3,21 +3,21 @@
 <form [formGroup]="itemForm" (ngSubmit)="save()">
     <mat-dialog-content>
         <!-- Item Name -->
-        <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-form-field appearance="outline">
             <mat-label>Item Name</mat-label>
             <input matInput formControlName="name" />
             <mat-error *ngIf="itemForm.get('name')?.invalid">Name is required</mat-error>
         </mat-form-field>
 
         <!-- Price -->
-        <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-form-field appearance="outline">
             <mat-label>Price</mat-label>
             <input matInput type="number" formControlName="price" />
             <mat-error *ngIf="itemForm.get('price')?.invalid">Valid price is required</mat-error>
         </mat-form-field>
 
         <!-- Category Dropdown -->
-        <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
             <mat-select formControlName="category">
                 <mat-option *ngFor="let category of categories" [value]="category._id">
@@ -28,7 +28,7 @@
         </mat-form-field>
 
         <!-- Image URL with Increment Button in One Row -->
-        <div style="display: flex; align-items: center; width: 100%;">
+        <div class="d-flex text-center w-100">
             <mat-form-field appearance="outline" style="flex: 1; margin-right: 8px;">
                 <mat-label>Image URL</mat-label>
                 <input matInput formControlName="image" placeholder="Enter Image URL" type="text">
@@ -40,7 +40,7 @@
         </div>
 
         <!-- preview image -->
-        <div *ngIf="imageList.length > 0" style="display: flex;">  
+        <div *ngIf="imageList.length > 0" class="d-flex">  
             <div *ngFor="let image of imageList; let index = index" style="position: relative; margin-right: 10px;">  
                 <p-image  [src]="image" alt="Item Image" width="100" class="imageStyle" [preview]="true" />
                 

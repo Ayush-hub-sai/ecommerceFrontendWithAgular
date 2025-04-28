@@ -1,58 +1,7 @@
-<!-- <div class="sidenav-header">
-    <img src="image/pic.jpg" alt="Avtar" [height]="profilePicSize()" [width]="profilePicSize()">
-    <div class="header-text" [class.hide-header-text]="sidenavCollapsed()">
-        <h5>Rudra Patrika</h5>
-        <p>Bishnu Behera</p>
-    </div>
-</div> -->
-
-
-<!-- <mat-nav-list>
-    @for (item of routerList; track item) {
-    <a mat-list-item class="menu-item" [routerLink]="item.route"  routerLinkActive="selected-menu-item"
-        #rla="routerLinkActive" [activated]="rla.isActive">
-        <mat-icon matListItemIcon
-            [fontSet]="rla.isActive?'material-icons':'material-icons-outlined'" title="{{item.label}}">{{item.icon}}</mat-icon>
-        @if(!sidenavCollapsed()){
-        <span matListItemTitle> {{ item.label }}</span>
-        }
-    </a>
-    }
-</mat-nav-list> -->
-
-<!-- <mat-nav-list>
-    <ng-container *ngFor="let menuItem of routerList">
-        <mat-list-item *ngIf="!menuItem.submenu" [routerLink]="menuItem.route" [routerLinkActiveOptions]="{ exact: true }">
-            <mat-icon title="{{menuItem.label}}">{{ menuItem.icon }}</mat-icon>
-            @if(!sidenavCollapsed()){
-            {{ menuItem.label }}
-            }
-        </mat-list-item>
-
-        <mat-expansion-panel *ngIf="menuItem.submenu">
-            <mat-expansion-panel-header>
-                <mat-icon title="{{menuItem.label}}">{{ menuItem.icon }}</mat-icon>
-                @if(!sidenavCollapsed()){
-                <span style="margin-left: 4px;">{{ menuItem.label }}</span>
-                }
-            </mat-expansion-panel-header>
-            <mat-nav-list>
-                <mat-list-item *ngFor="let submenu of menuItem.submenu" [routerLink]="submenu.route">
-                    <mat-icon title="{{submenu.label}}">{{ submenu.icon }}</mat-icon>
-                    @if(!sidenavCollapsed()){
-                    {{ submenu.label }}
-                    }
-                </mat-list-item>
-            </mat-nav-list>
-        </mat-expansion-panel>
-    </ng-container>
-</mat-nav-list> -->
-
-
 <mat-nav-list>
     <ng-container *ngFor="let menuItem of routerList">
         <!-- Menu Item without Submenu -->
-        <mat-list-item *ngIf="!menuItem.submenu" class="menuDesign">
+        <mat-list-item *ngIf="!menuItem.submenu">
             <a [routerLink]="menuItem.route" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
                 <mat-icon title="{{ menuItem.label }}">{{ menuItem.icon }}</mat-icon>
                 <span *ngIf="!sidenavCollapsed()">
