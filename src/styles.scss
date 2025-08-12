@@ -69,3 +69,7 @@ table thead tr {
   max-width: 50vw !important;
   max-height: 50vh !important;
 }
+
+::ng-deep mat-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container{
+  justify-content: space-between !important;
+}
